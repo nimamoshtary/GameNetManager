@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_edittext"
+    android:backgroundTint="#131417" >
+
+    <TextView
+        android:id="@+id/txt_Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="18dp"
+        android:text="ثبت مشتری"
+        android:textSize="22dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/baloobhaijaan2_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="260dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="4dp"
+        android:background="#626262"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Header"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_Number"
+        android:layout_width="145dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:hint="شماره تلفن * [نام کاربری]"
+        app:hintTextColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Header">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_edittext"
+            android:inputType="text"
+            android:padding="2dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_Fullname"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="5dp"
+        android:hint="نام و نام خانوادگی *"
+        app:hintTextColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/edt_Number"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Header">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_edittext"
+            android:inputType="text"
+            android:padding="2dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_Password"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="70dp"
+        android:hint="رمز عبور (اختیاری)"
+        app:hintTextColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/edt_Number"
+        app:layout_constraintTop_toBottomOf="@+id/edt_Number"
+        android:visibility="gone">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_edittext"
+            android:inputType="text"
+            android:padding="2dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:id="@+id/part2"
+        android:layout_width="260dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#626262"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_Password"/>
+
+    <TextView
+        android:id="@+id/txt_Inviter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="کسی شما را دعوت کرده؟"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/part2"
+        app:layout_constraintStart_toStartOf="@+id/edt_Number"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_Inviter"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_Inviter"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginStart="8dp"
+        android:hint="شماره ی دعوت کننده"
+        app:hintTextColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/txt_Inviter"
+        app:layout_constraintTop_toBottomOf="@+id/part2"
+        android:visibility="visible">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_edittext"
+            android:inputType="text"
+            android:padding="2dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+<!--    <EditText-->
+<!--        android:id="@+id/edt_SubTitle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginTop="6dp"-->
+<!--        android:background="#FFFDE7"-->
+<!--        android:ems="10"-->
+<!--        android:hint="توضیحات یا دستاورد:"-->
+<!--        android:padding="10dp"-->
+<!--        android:paddingStart="10dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingEnd="10dp"-->
+<!--        android:textColor="#232323"-->
+<!--        android:textColorHint="#232323"-->
+<!--        android:textSize="14sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/edt_Title" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/edt_PhoneNumber"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:hint="تلفن همراه"-->
+<!--        android:textSize="14sp"-->
+
+<!--        app:layout_constraintTop_toBottomOf="@+id/edt_SubTitle"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/edt_SubTitle"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/edt_SubTitle" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txt_cp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="-10dp"-->
+<!--        android:text="تعداد حضور:"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/edt_CountAttendences"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/edt_SubTitle"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/edt_CountAttendences" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/edt_CountAttendences"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="15dp"-->
+<!--        android:background="#BBDEFB"-->
+<!--        android:ems="10"-->
+<!--        android:hint="اختیاری"-->
+<!--        android:inputType="number"-->
+<!--        android:padding="10dp"-->
+<!--        android:paddingStart="10dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingEnd="10dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textColorHint="@color/black"-->
+<!--        android:textSize="16dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/txt_cp"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/txt_cp"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/edt_StartTime"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/edt_PhoneNumber" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txt_pt"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="میزان بازی شده:"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/edt_PlayedTime"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/txt_cp"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/txt_cp"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/edt_PlayedTime" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/edt_PlayedTime"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="#BBDEFB"-->
+<!--        android:ems="10"-->
+<!--        android:hint="اختیاری"-->
+<!--        android:inputType="time"-->
+<!--        android:padding="5dp"-->
+<!--        android:paddingStart="10dp"-->
+<!--        android:paddingEnd="10dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="18dp"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/txt_pt"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/edt_CountAttendences"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/edt_CountAttendences" />-->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_ok"
+        android:layout_width="65dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:padding="0dp"
+        android:text="اتمام"
+        android:textColor="@color/black"
+        app:backgroundTint="#FFF176"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_Inviter"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

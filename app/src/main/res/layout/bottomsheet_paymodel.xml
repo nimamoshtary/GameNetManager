@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="18dp">
+
+    <TextView
+        android:id="@+id/txt_PayFacture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="22dp"
+        android:text="پرداخت فاکتور"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/baloobhaijaan2_medium"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintTop_toTopOf="@+id/txt_PayFacture"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_PayFacture"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextClock
+        android:id="@+id/txt_Clock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:format24Hour="HH:mm:ss"
+        android:textSize="14dp"
+        android:fontFamily="@font/baloobhaijaan2_medium"
+        app:layout_constraintTop_toTopOf="@+id/txt_PriceFacture"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_PriceFacture"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/txt_PriceFacture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="40dp"
+        android:text="125,000"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/baloobhaijaan2_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_PayFacture"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:text="تومان"
+        android:textSize="11dp"
+        android:fontFamily="@font/baloobhaijaan2_medium"
+        app:layout_constraintStart_toEndOf="@+id/txt_PriceFacture"
+        app:layout_constraintTop_toTopOf="@+id/txt_PriceFacture"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_PriceFacture"/>
+
+    <TextView
+        android:id="@+id/txt_Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:text="1404/06/08"
+        android:textSize="14dp"
+        android:fontFamily="@font/baloobhaijaan2_medium"
+        app:layout_constraintTop_toTopOf="@+id/txt_PriceFacture"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_PriceFacture"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <RadioGroup
+        android:id="@+id/RadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/txt_PriceFacture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_PayMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:checked="true"
+            android:layout_marginEnd="35dp"
+            android:alpha="0.7"
+            android:text="نقدی"
+            android:textSize="18dp"
+            android:fontFamily="@font/baloobhaijaan2_medium"
+            android:background="@drawable/shape_edittext"
+            android:backgroundTint="#43A047"
+            android:padding="15dp"
+            android:paddingEnd="40dp"
+            android:paddingStart="40dp"
+            android:button="@null"
+            android:drawableRight="@drawable/ic_money1x"
+            android:drawablePadding="7dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_PayElectronic"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:checked="false"
+            android:text="اعتباری"
+            android:textSize="18dp"
+            android:fontFamily="@font/baloobhaijaan2_medium"
+            android:background="@drawable/shape_edittext"
+            android:backgroundTint="#1976D2"
+            android:padding="15dp"
+            android:paddingEnd="40dp"
+            android:paddingStart="40dp"
+            android:button="@null"
+            android:drawableRight="@drawable/ic_card"
+            android:drawablePadding="7dp"/>
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_CheckPay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_edittext"
+        app:backgroundTint="#7CB342"
+        android:text="تایید پرداخت نقدی"
+        android:textSize="20dp"
+        android:fontFamily="@font/baloobhaijaan2_medium"
+        android:drawableRight="?android:attr/textCheckMark"
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+    <RadioGroup
+        android:visibility="gone"
+        android:id="@+id/AllOrPart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/AllPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:text="کل هزینه"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/PartPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="دنگی (بزودی...)" />
+    </RadioGroup>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/txt_PriceForPay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:text="مبلغ قابل پرداخت"
+        app:layout_constraintStart_toEndOf="@+id/AllOrPart"
+        app:layout_constraintTop_toTopOf="@+id/AllOrPart"
+        app:layout_constraintBottom_toBottomOf="@+id/AllOrPart"/>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/AllPriceLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AllOrPart">
+
+        <RadioGroup
+            android:id="@+id/AllModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/AllModelMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="نقدی"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/AllModelEPay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="کارتخوان"/>
+
+            <RadioButton
+                android:id="@+id/AllModelEM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="نقدی+کارتخوان"/>
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/AllMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="آیا تایید میکنید که کل هزینه بصورت نقدی پرداخت شده؟"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               android:orientation="horizontal"
+                android:gravity="center">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/AllMoneyPayed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="بله"
+                    android:textColor="@color/black"
+                    app:backgroundTint="#FFF176" />
+                <com.google.android.material.button.MaterialButton
+                android:id="@+id/AllMoneyCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="خیر"
+                    android:textColor="@color/black"
+                    app:backgroundTint="#FFF176" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/AllEPay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="آیا تایید میکنید که کل هزینه بصورت کارتی و اعتباری پرداخت شده؟"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/AllEPayed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:backgroundTint="#FFF176"
+                    android:text="بله"/>
+                <Button
+                    android:id="@+id/AllECancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:backgroundTint="#FFF176"
+                    android:text="خیر"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/AllEAttached"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="افزودن فایل پیوست"
+                android:textColor="@color/black"
+                app:backgroundTint="#FFF176"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/AllEM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edt_AllMoney"
+                    android:layout_width="188dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:hint="مقدار نقدی دریافت شده:"
+                    app:hintTextColor="@color/white">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="2dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edt_AllE"
+                    android:layout_width="188dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:hint="مقدار اعتباری دریافت شده:"
+                    app:hintTextColor="@color/white">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="2dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/AllEMPayed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="تایید"
+                    android:textColor="@color/black"
+                    app:backgroundTint="#FFF176"/>
+                <Button
+                    android:id="@+id/AllEMCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="لغو"
+                    android:textColor="@color/black"
+                    app:backgroundTint="#FFF176"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

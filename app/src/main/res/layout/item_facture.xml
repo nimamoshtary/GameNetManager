@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="18dp">
+
+    <TextView
+        android:id="@+id/txt_OnePlayer"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="18dp"
+        android:text="اسم گیمر اول"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_PlayerCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_OnePlayer"
+        app:layout_constraintStart_toEndOf="@+id/txt_OnePlayer"
+        app:layout_constraintTop_toTopOf="@+id/txt_OnePlayer" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_PC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:text="نفر"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_PlayerCount"
+        app:layout_constraintStart_toEndOf="@+id/txt_PlayerCount"
+        app:layout_constraintTop_toTopOf="@+id/txt_PlayerCount" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_PlayedTimeM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:text="60"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_PC"
+        app:layout_constraintStart_toEndOf="@+id/txt_PC"
+        app:layout_constraintTop_toTopOf="@+id/txt_PC" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_PT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="ساعت"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_PlayedTimeM"
+        app:layout_constraintStart_toEndOf="@+id/txt_PlayedTimeM"
+        app:layout_constraintTop_toTopOf="@+id/txt_PlayedTimeM" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_Operator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="5dp"
+        android:text="اپراتور 1"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_PT"
+        app:layout_constraintStart_toEndOf="@+id/txt_PT"
+        app:layout_constraintTop_toTopOf="@+id/txt_PT" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_Games"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:padding="2dp"
+        android:text="پیس، فیفا، کانتر"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/txt_OnePlayer"
+        app:layout_constraintTop_toBottomOf="@+id/txt_OnePlayer" />
+
+    <Button
+        android:id="@+id/btn_Pause"
+        android:layout_width="25dp"
+        android:layout_height="36dp"
+        android:text="⏸"
+        android:textSize="22dp"
+        android:padding="0dp"
+        android:background="#00FFFFFF"
+        android:layout_marginStart="50dp"
+        app:layout_constraintStart_toEndOf="@+id/txt_Games"
+        app:layout_constraintTop_toTopOf="@+id/txt_Games"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_Games"/>
+
+    <Button
+        android:id="@+id/btn_Finish"
+        android:layout_width="25dp"
+        android:layout_height="36dp"
+        android:text="⏹"
+        android:textSize="22dp"
+        android:padding="0dp"
+        android:background="#00FFFFFF"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_Pause"
+        app:layout_constraintTop_toTopOf="@+id/txt_Games"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_Games"/>
+
+    <Button
+        android:id="@+id/btn_Play"
+        android:layout_width="25dp"
+        android:layout_height="36dp"
+        android:text="▶️"
+        android:textSize="22dp"
+        android:padding="0dp"
+        android:background="#00FFFFFF"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/btn_Pause"
+        app:layout_constraintTop_toTopOf="@+id/txt_Games"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_Games"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="250000"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btn_Play"
+        app:layout_constraintTop_toTopOf="@+id/btn_Pause"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_Pause"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_Pr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="تومان"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@+id/txt_Price"
+        app:layout_constraintTop_toTopOf="@+id/txt_Price" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_Players"
+        android:layout_width="135dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="6dp"
+        android:text="نیما مشتری، رضا پورمهدی، مجتبی کیانی"
+        android:textColor="@color/primary"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@+id/txt_Games"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Games" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_StartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:00"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Play"
+        app:layout_constraintStart_toStartOf="@+id/btn_Play"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_EndTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="13:00"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintTop_toTopOf="@+id/txt_StartTime"
+        app:layout_constraintStart_toEndOf="@+id/txt_StartTime"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" - "
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txt_StartTime"
+        app:layout_constraintTop_toTopOf="@+id/txt_StartTime"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_StartTime"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_Pay"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:backgroundTint="#E53935"
+        android:padding="0dp"
+        android:text="پرداخت نشده"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

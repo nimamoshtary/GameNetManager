@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Facture"
+        android:id="@+id/nb_factor"
+        android:icon="@drawable/ic_factureselector" />
+    <item
+        android:title="Home"
+        android:id="@+id/nb_Home"
+        android:icon="@drawable/ic_homeselector" />
+    <item
+        android:title="Customers"
+        android:id="@+id/nb_Player"
+        android:icon="@drawable/ic_gamerselector" />
+</menu>

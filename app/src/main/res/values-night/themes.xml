@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.GameNetYar" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#2D2D2D</item>
+        <item name="colorPrimaryVariant">#464646</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="background">@color/primary</item>
+        <item name="colorOnBackground">?attr/colorPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#FFD600</item>
+        <item name="colorSecondaryVariant">#FF9800</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- Customize your dark theme here. -->
+        <item name="colorButtonNormal">@null</item>
+        <item name="colorControlHighlight">@null</item>
+        <item name="colorControlActivated">@null</item>
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    </style>
+
+    <style name="Toolbar" parent="Theme.MaterialComponents">
+        <item name="fontFamily">@font/shadowhand</item>
+    </style>
+</resources>

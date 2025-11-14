@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp"
+    android:background="#131417" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="12dp"
+        android:text="ثبت فاکتور"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:fontFamily="@font/baloobhaijaan2_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_StartTime"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="35dp"
+        android:hint="ساعت شروع:"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="datetime|time"
+            android:background="@drawable/shape_edittext"
+            android:text="14:00"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:fontFamily="@font/baloobhaijaan2_medium"
+            android:padding="2dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_EndTime"
+        android:layout_width="130dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="35dp"
+        android:hint="ساعت پایان:"
+        android:textColorHint="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edt_StartTime"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_StartTime">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="datetime|time"
+            android:background="@drawable/shape_edittext"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/baloobhaijaan2_medium"
+            android:padding="2dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RadioGroup
+        android:id="@+id/RG_PlayerStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_StartTime">
+
+        <RadioButton
+            android:id="@+id/RB_AnyPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:text="مشتری ناشناس"
+            android:textColor="@color/white"
+            android:fontFamily="@font/baloobhaijaan2_medium"/>
+
+        <RadioButton
+            android:id="@+id/RB_FamilierPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="انتخاب مشتری"
+            android:textColor="@color/white"
+            android:fontFamily="@font/baloobhaijaan2_medium"/>
+
+    </RadioGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/AC_Operator"
+        android:layout_width="125dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="3dp"
+        android:padding="0dp"
+        android:hint="انتخاب اپراتور..."
+        android:textColorHint="@color/white"
+        app:endIconTint="@color/white"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        app:layout_constraintStart_toStartOf="@+id/edt_EndTime"
+        app:layout_constraintTop_toBottomOf="@+id/RG_PlayerStatus">
+        <AutoCompleteTextView
+            android:padding="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_edittext"
+            android:fontFamily="@font/baloobhaijaan2_medium"
+            android:textSize="9dp"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_PlayerCount"
+        android:layout_width="125dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:hint="تعداد نفرات:"
+        android:textColorHint="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/AC_Operator"
+        app:layout_constraintTop_toBottomOf="@+id/AC_Operator">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:background="@drawable/shape_edittext"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:fontFamily="@font/baloobhaijaan2_medium"
+            android:padding="3dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/AC_Player"
+        android:layout_width="125dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="35dp"
+        android:padding="0dp"
+        android:hint="انتخاب مشتری..."
+        android:textColorHint="@color/white"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        app:layout_constraintTop_toTopOf="@+id/AC_Operator"
+        app:layout_constraintStart_toEndOf="@+id/AC_Operator"
+        app:layout_constraintEnd_toEndOf="parent">
+        <AutoCompleteTextView
+            android:padding="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_edittext"
+            android:fontFamily="@font/baloobhaijaan2_medium"
+            android:textSize="9dp"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RV_PlayerName"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/shape_player"
+        android:padding="3dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/AC_Player"
+        app:layout_constraintStart_toEndOf="@+id/AC_Operator"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/edt_PausedTime"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="-40dp"
+        android:ems="10"
+        android:hint="میزان توقف:"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/edt_EndTime"
+        app:layout_constraintTop_toBottomOf="@+id/edt_StartTime" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="2dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/edt_Sub"
+        android:layout_width="190dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="توضیحات:"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/edt_PausedTime"
+        app:layout_constraintTop_toTopOf="@+id/edt_PausedTime" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="2dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_games"
+        android:layout_width="125dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="13dp"
+        android:hint="بازی ها:"
+        android:textColorHint="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/edt_PlayerCount"
+        app:layout_constraintTop_toBottomOf="@+id/edt_PlayerCount" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_edittext"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/baloobhaijaan2_medium"
+            android:padding="3dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/btn_ok"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:padding="0dp"
+        android:background="@drawable/shape_edittext"
+        android:gravity="center"
+        android:text="اتمام"
+        android:textColor="@color/white"
+        android:fontFamily="@font/baloobhaijaan2_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edt_games"
+        app:layout_constraintTop_toTopOf="@+id/edt_games" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
