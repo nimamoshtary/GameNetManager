@@ -36,7 +36,7 @@
             android:background="@drawable/shape_edittext"
             android:text="14:00"
             android:textColor="@color/white"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:fontFamily="@font/baloobhaijaan2_medium"
             android:padding="2dp"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -56,7 +56,7 @@
             android:layout_height="match_parent"
             android:inputType="datetime|time"
             android:background="@drawable/shape_edittext"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:textColor="@color/white"
             android:fontFamily="@font/baloobhaijaan2_medium"
             android:padding="2dp"/>
@@ -132,7 +132,7 @@
             android:background="@drawable/shape_edittext"
             android:text="1"
             android:textColor="@color/white"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:fontFamily="@font/baloobhaijaan2_medium"
             android:padding="3dp"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -225,7 +225,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/shape_edittext"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:textColor="@color/white"
             android:fontFamily="@font/baloobhaijaan2_medium"
             android:padding="3dp"/>
@@ -233,13 +233,13 @@
 
 
     <TextView
-        android:id="@+id/btn_ok"
+        android:id="@+id/btn_submit"
         android:layout_width="70dp"
         android:layout_height="48dp"
         android:padding="0dp"
-        android:background="@drawable/shape_edittext"
+        android:background="?attr/colorButtonNormal"
         android:gravity="center"
-        android:text="اتمام"
+        android:text="ثبت"
         android:textColor="@color/white"
         android:fontFamily="@font/baloobhaijaan2_medium"
         app:layout_constraintEnd_toEndOf="parent"

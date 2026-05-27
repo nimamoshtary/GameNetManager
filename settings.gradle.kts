@@ -1,11 +1,17 @@
 pluginManagement {
     repositories {
-        mavenCentral()
-        google()
-        gradlePluginPortal()
-        maven {
-            url = uri("https://maven-central.storage.apis.com")
+        //google()
+        maven { url = uri("https://maven.myket.ir") }
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("android.*")
+            }
         }
+
+        mavenCentral()
+        gradlePluginPortal()
         ivy {
             url = uri("https://github.com/ivy-rep/")
         }
@@ -14,9 +20,9 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        maven { url = uri("https://maven.myket.ir") }
         google()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") }
     }
 }
 

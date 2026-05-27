@@ -12,22 +12,24 @@
         android:id="@+id/AppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1D1F24"
+        android:background="?attr/colorSecondary"
         app:layout_constraintTop_toTopOf="parent">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/ToolBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginEnd="14dp"
-                android:text=" Life Plus +"
                 android:fontFamily="@font/shadowhand"
+                android:text=" Life Plus +"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="20dp"
-                android:textColor="#CE93D8"
-                android:visibility="visible"/>
+                android:visibility="visible" />
 
             <LinearLayout
                 android:id="@+id/ap1_linearlayout1"
@@ -52,11 +54,11 @@
                 <ImageView
                     android:layout_width="44.5dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_margin="2dp"
-                    android:src="@mipmap/onlineclient_foreground"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_player"
-                    android:backgroundTint="#E61D1F24"/>
+                    android:backgroundTint="#E61D1F24"
+                    android:src="@mipmap/onlineclient_foreground" />
             </LinearLayout>
 
             <LinearLayout
@@ -81,11 +83,11 @@
                 <ImageView
                     android:layout_width="44.5dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_margin="2dp"
-                    android:src="@mipmap/sortout_foreground"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_player"
-                    android:backgroundTint="#E61D1F24"/>
+                    android:backgroundTint="#E61D1F24"
+                    android:src="@mipmap/sortout_foreground" />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -96,6 +98,7 @@
         android:layout_height="wrap_content"
         android:background="#1D1F24"
         app:layout_constraintTop_toTopOf="parent">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/ToolBar2"
             android:layout_width="match_parent"
@@ -107,16 +110,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginEnd="14dp"
-                android:text="Life Plus +"
                 android:fontFamily="@font/shadowhand"
-                android:textSize="20dp"
+                android:text="Life Plus +"
                 android:textColor="#CE93D8"
-                android:visibility="visible"/>
+                android:textSize="20dp"
+                android:visibility="visible" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/ic_menu_delete"/>
+                android:background="@android:drawable/ic_menu_delete" />
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -124,28 +127,110 @@
         android:id="@+id/FrameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/navigation_bottom"
-        app:layout_constraintTop_toBottomOf="@+id/AppBar" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="?attr/colorSurface"
-        app:itemActiveIndicatorStyle="@null"
-        app:itemHorizontalTranslationEnabled="true"
-        app:itemIconSize="75dp"
-        app:itemIconTint="#E9BD96CC"
-        app:itemPaddingBottom="4dp"
-        app:itemPaddingTop="-7dp"
-        app:itemRippleColor="@null"
-        app:itemTextColor="#E9BD96CC"
-        app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_bottom">
+        app:layout_constraintTop_toBottomOf="@+id/AppBar">
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        <FrameLayout
+            android:id="@+id/tt_Overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#AA000000"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone">
+
+            <View
+                android:id="@+id/ttv_whitecircle"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="bottom|center"
+                android:background="@drawable/shape_testto"
+                android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true" />
+
+            <LinearLayout
+                android:id="@+id/ttv_textLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="80dp"
+                android:background="@drawable/shape_testtot"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:translationZ="5dp">
+
+                <TextView
+                    android:id="@+id/ttv_textTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center"
+                    android:text="اینجا خونه ی کسب و کار شماست"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tooltipDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="آمار و گزارش وضعیت امروز رو از اینجا میتونی ببینی"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/ttv_ControlLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:padding="16dp">
+
+                <Button
+                    android:id="@+id/btnSkip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="رد کردن" />
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="بعدی" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/tutorialOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation_bottom"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/shape_circle"
+            app:backgroundTint="?attr/colorSecondary"
+            app:itemActiveIndicatorStyle="@null"
+            app:itemHorizontalTranslationEnabled="true"
+            app:itemIconSize="75dp"
+            app:itemIconTint="?attr/colorPrimary"
+            app:itemPaddingBottom="0dp"
+            app:itemPaddingTop="12dp"
+            app:itemRippleColor="@null"
+            app:itemTextColor="?attr/colorPrimary"
+            app:labelVisibilityMode="selected"
+            app:menu="@menu/nav_bottom" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

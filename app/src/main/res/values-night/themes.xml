@@ -2,19 +2,20 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.GameNetYar" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#2D2D2D</item>
-        <item name="colorPrimaryVariant">#464646</item>
+        <item name="colorPrimary">#E9BD96CC</item>
+        <item name="colorPrimaryVariant">#33022F</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="background">@color/primary</item>
-        <item name="colorOnBackground">?attr/colorPrimary</item>
+        <item name="background">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#FFD600</item>
-        <item name="colorSecondaryVariant">#FF9800</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">#1D1F24</item>
+        <item name="colorSecondaryVariant">@color/material_dynamic_primary0</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <!-- Customize your dark theme here. -->
-        <item name="colorButtonNormal">@null</item>
+        <item name="colorButtonNormal">#4E044C</item>
+        <item name="android:panelColorBackground">#1D1E37</item>
         <item name="colorControlHighlight">@null</item>
         <item name="colorControlActivated">@null</item>
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->

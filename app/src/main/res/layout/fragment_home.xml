@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#12141B"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.HomeFragment">
@@ -16,8 +15,9 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:padding="14dp"
             android:scaleType="fitXY"
-            android:src="@drawable/baner3"
+            android:src="@drawable/baner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
             android:layout_width="338dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="-26dp"
-            android:backgroundTint="#1D1E37"
+            android:backgroundTint="?attr/android:panelColorBackground"
             app:cardCornerRadius="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -259,7 +259,7 @@
                         android:layout_height="105dp"
                         android:layout_marginStart="10dp"
                         android:background="@drawable/shape_player"
-                        android:backgroundTint="#B29AE7"
+                        android:backgroundTint="?attr/colorPrimary"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="8dp"
@@ -624,7 +624,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/TO"
+            android:id="@+id/btn_manageoperator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

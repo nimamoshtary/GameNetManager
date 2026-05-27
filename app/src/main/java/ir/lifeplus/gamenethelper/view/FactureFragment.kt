@@ -2,10 +2,10 @@ package ir.lifeplus.gamenethelper.view
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Paint
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,10 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ir.lifeplus.gamenethelper.ContractPV
@@ -38,227 +36,262 @@ import android.graphics.ColorFilter
 import android.graphics.PixelFormat
 import android.graphics.drawable.Drawable
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import androidx.core.view.marginTop
 import kotlin.math.hypot
+import androidx.core.graphics.toColorInt
+import ir.lifeplus.gamenethelper.databinding.ItemFactureBinding
 
-
+//Fragment connected to the fragment_facture.xml layout.
 class FactureFragment : Fragment() , ContractPV.FactureView {
+
+    //Connecting the fragment to the layout (View) and the presenter (and then the model).
     lateinit var binding: FragmentFactureBinding
     lateinit var presenter : ContractPV.FacturePresenter
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
         binding = FragmentFactureBinding.inflate(layoutInflater, container, false)
         return binding.root
+
     }
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Note: به کل صفحه ویوپیجر بزار تا با اسکرول شدن بره به روزهای قبل و فاکتور های روز قبل رو نشون بده
 
         presenter = FacturePresenter()
+        //Attach the presenter in order to start the process of displaying the contents of this fragment in the view
         presenter.OnAtttach(this, view)
 
-        // یه ویوپیجر کار بزار که با اسرول کردن به سمت چپ یا راست بره به روز قبل و بعد
+        val SDF = SimpleDateFormat( "HH:mm", Locale("en", "IR") ).format( Date() )
 
-        binding.fab.setOnClickListener {
-            val alert = AlertDialog.Builder(context).create()
+        //Show DialogFacture...
+        binding.fabAddFacture.setOnClickListener {
+
             val dialogs = DialogFactureBinding.inflate(layoutInflater)
-            alert.setView(dialogs.root)
-            alert.setCancelable(true)
-            alert.show()
+            val alert = AlertDialog.Builder(context).create().apply {
+                setView(dialogs.root)
+                setCancelable(true)
+                show()
+            }
+
+            val adapterACNp = ArrayAdapter(
+                dialogs.root.context,
+                R.layout.item_nameplayer,
+                presenter.GetPlayerName())
+            val adapterACOn = ArrayAdapter(
+                dialogs.root.context,
+                R.layout.item_nameplayer,
+                presenter.GetOperatorsName()
+            )
+
+            dialogs.apply {
+
+                edtStartTime.editText!!.setText(SDF)
+                RGPlayerStatus.check(R.id.RB_AnyPlayer)
+                (ACPlayer.editText as AutoCompleteTextView).setAdapter(adapterACNp)
+                (ACOperator.editText as AutoCompleteTextView).setAdapter(adapterACOn)
+
+                //When an item from the 'NamePlayerList' is clicked, that player or customer are added to the facture’s customer list
+                (ACPlayer.editText as AutoCompleteTextView).setOnItemClickListener { _, _, position, _ ->
 
             val sdf = SimpleDateFormat( "HH:mm", Locale("en", "IR") ).format( Date() )
             dialogs.edtStartTime.editText!!.setText( sdf.toString() )
             dialogs.RGPlayerStatus.check(R.id.RB_AnyPlayer)
+                    val name = adapterACNp.getItem(position) ?: return@setOnItemClickListener
+                    presenter.AddPlayerToList(name, dialogs)
 
-
-            dialogs.RGPlayerStatus.setOnCheckedChangeListener { radioGroup, i ->
-                when (i) {
-                    R.id.RB_FamilierPlayer -> {
-                        dialogs.ACPlayer.visibility = View.VISIBLE
-
-                        fun Int.toPx(context: Context): Int =
-                            (this * context.resources.displayMetrics.density).toInt()
-                        val marginInDp = 55
-                        val marginInPx = marginInDp.toPx(view.context)
-                        val params = dialogs.btnOk.layoutParams as ConstraintLayout.LayoutParams
-                        params.topMargin = marginInPx
-                        dialogs.btnOk.layoutParams = params
-                    }
-                    R.id.RB_AnyPlayer -> {
-                        dialogs.ACPlayer.visibility = View.GONE
-                        presenter.ClearPlayersList()
-                        dialogs.RVPlayerName.visibility = View.GONE
-
-                        fun Int.toPx(context: Context): Int =
-                            (this * context.resources.displayMetrics.density).toInt()
-                        val marginInDp = 0
-                        val marginInPx = marginInDp.toPx(view.context)
-                        val params = dialogs.btnOk.layoutParams as ConstraintLayout.LayoutParams
-                        params.topMargin = marginInPx
-                        dialogs.btnOk.layoutParams = params
-                    }
                 }
-            }
 
-            val NamePlayerList = presenter.GetPlayerName()
-            val adapterAC = ArrayAdapter(dialogs.root.context, R.layout.item_nameplayer, NamePlayerList)
-            (dialogs.ACPlayer.editText as AutoCompleteTextView).setAdapter(adapterAC)
-            (dialogs.ACPlayer.editText as AutoCompleteTextView).setOnItemClickListener { _, _, position, _ ->
-                val name = adapterAC.getItem(position) ?: return@setOnItemClickListener
-                presenter.AddPlayerToList(name,dialogs)
-            }
+                RGPlayerStatus.setOnCheckedChangeListener { RG, RB ->
 
-            val adapter = ArrayAdapter(dialogs.root.context, R.layout.item_nameplayer, presenter.GetOperatorsName())
-            (dialogs.ACOperator.editText as AutoCompleteTextView).setAdapter(adapter)
+                    when (RB) {
 
-            dialogs.btnOk.setOnClickListener {
-                if(dialogs.edtStartTime.editText!!.text.isNotEmpty() && dialogs.ACOperator.editText!!.text.isNotEmpty() ) {
-                    presenter.AddNewFacture(dialogs)
-                    alert.dismiss()
-                    Toast.makeText(view.context, "فاکتور با موفقیت ساخته شد", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(view.context, "زمان شروع یا اسم اپراتور را وارد نکردید!", Toast.LENGTH_SHORT).show()
+                        R.id.RB_FamilierPlayer -> {
+
+                            ACPlayer.visibility = View.VISIBLE
+
+                            //The function 'toPX()' converts a Int into pixel
+                            fun Int.toPx(context: Context): Int =
+                                (this * context.resources.displayMetrics.density).toInt()
+                            //By the amount of 'marginInDp', the 'Ok' button moves lower
+                            val marginInDp = 55
+                            val marginInPx = marginInDp.toPx(view.context)
+                            val params = dialogs.btnSubmit.layoutParams as ConstraintLayout.LayoutParams
+                            params.topMargin = marginInPx
+                            btnSubmit.layoutParams = params
+
+                        }
+
+                        R.id.RB_AnyPlayer -> {
+
+                            ACPlayer.visibility = View.GONE
+                            RVPlayerName.visibility = View.GONE
+                            presenter.ClearPlayersList()
+
+                            //The function 'toPX()' converts a Int into pixel
+                            fun Int.toPx(context: Context): Int =
+                                (this * context.resources.displayMetrics.density).toInt()
+                            //The 'Ok' button returns to its original position
+                            val marginInPx = 0.toPx(view.context)
+                            val params = dialogs.btnSubmit.layoutParams as ConstraintLayout.LayoutParams
+                            params.topMargin = marginInPx
+                            dialogs.btnSubmit.layoutParams = params
+
+                        }
+
+                    }
+
                 }
+
+                //Send the entered information to the presenter for registration
+                btnSubmit.setOnClickListener {
+
+                    if(dialogs.edtStartTime.editText!!.text.isNotEmpty() && dialogs.ACOperator.editText!!.text.isNotEmpty() ) {
+
+                        presenter.AddNewFacture(dialogs)
+
+                        alert.dismiss()
+
+                        Toast.makeText(view.context, "فاکتور با موفقیت ساخته شد", Toast.LENGTH_SHORT).show()
+
+                    } else {
+
+                        Toast.makeText(view.context, "زمان شروع یا اسم اپراتور را وارد نکردید!", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                }
+
             }
+
         }
+
     }
 
+    //Receive data from presenter and display it with the generic adapter on RecyclerView
     override fun Run(table: List<FactureItem>) {
 
         val adapterFacture = GenericAdapter<FactureItem>(
             data = table,
             layoutId = R.layout.item_facture,
-            bind = { viewA, item -> //آیتم طبق فیگما نیاز به باز طراحی دارد
-
-                val leftColor = if (item.Price > item.PayedPrice) Color.parseColor("#DC1010") else Color.parseColor("#1674CC")
-                val rightColor = if (presenter.GetOperatorByName(item.Operator).Model == "کنسول") Color.parseColor("#135492") else Color.parseColor("#D97614")
-
-                val gradientDrawable = AngledGradientDrawable(50.0, leftColor, rightColor)
-                viewA.background = gradientDrawable
-
-                val PauseButton = viewA.findViewById<Button>(R.id.btn_Pause) // وقتی آیتم متوقف شده نشون داده نشه
-                val PlayButton = viewA.findViewById<Button>(R.id.btn_Play)
-                val FinishButton = viewA.findViewById<Button>(R.id.btn_Finish)
-
-                val firstPlayer = Converters().toList(item.Players.toString()).firstOrNull() ?: "مشتری جدید"
-
-                val onPaidPrice = item.PayedPrice - item.Price
-                val priceTextColor = if( onPaidPrice >= 0) Color.GREEN else Color.RED
-
-                val map = mapOf(
-                    R.id.txt_OnePlayer to firstPlayer,
-                    R.id.txt_StartTime to item.StartTime,
-                    R.id.txt_EndTime to (item.EndTime ?: "").ifEmpty { " - " },
-                    R.id.txt_PlayedTimeM to item.PlayedTimeH,
-                    R.id.txt_PlayerCount to item.PlayerCount.toString(),
-                    R.id.txt_Players to item.Players,
-                    R.id.txt_Price to item.Price.toString(),
-                    R.id.txt_Games to item.GamesName,
-                    R.id.txt_Operator to item.Operator
-                )
-                map.forEach { (id, value) ->
-                    viewA.findViewById<TextView>(id).text = value
-                }
-                viewA.findViewById<TextView>(R.id.txt_Price).setTextColor(priceTextColor)
-
-                val isPaused = !item.PausedTime.isNullOrEmpty()
-                val isFinished = !item.EndTime.isNullOrEmpty()
-
-//                    visibility = if (isPaused) View.VISIBLE else View.INVISIBLE
-//                    if (isPaused) {
-//                        val elapsed = System.currentTimeMillis() - item.PausedTime!!.toLong()
-//                        text = String.format(Locale.US, "%.2f", elapsed / 60000.0)
-//                        PlayButton.visibility = View.VISIBLE
-//                        FinishButton.visibility = View.INVISIBLE
-//                    }
-
-                FinishButton.visibility = if(isFinished) {View.INVISIBLE} else { if(isPaused) { View.INVISIBLE } else { View.VISIBLE} }
-                PlayButton.visibility = if(isPaused) View.VISIBLE else View.INVISIBLE
-                PauseButton.visibility = if(isFinished) { View.INVISIBLE } else { if(isPaused) { View.INVISIBLE } else { View.VISIBLE} }
-                PauseButton.setOnClickListener {
-                    StartPause(item)
-                    PlayButton.visibility = View.VISIBLE
-                    PauseButton.visibility = View.INVISIBLE
-                    FinishButton.visibility = View.INVISIBLE
-                }
-
-                PlayButton.setOnClickListener {
-                    //مسئله اینه که اگه فاکتور برای دیروز باشه و این توقف خواسته بشه که تموم بشه، نسبت به زمان لحظه ممکنه تایم رو بد محاسبه کنه
-                    //یعنی باید روی بستن شیفت تاکید کنی و زودتر اجراش کنی
-
-                    //مسئله دیگه اگه زده شد، چک کن ببین تایم تموم شده و میخواد استارت کنه یا توقف رو میخواد تموم کنه
-
-                    //PauseText.visibility = View.INVISIBLE
-                    PlayButton.visibility = View.INVISIBLE
-                    //PauseText.visibility = View.VISIBLE
-                    FinishButton.visibility = View.VISIBLE
-
-                    EndPause(item)
-                }
-
-                FinishButton.setOnClickListener {
-                    if (isFinished) {
-                        Toast.makeText(viewA.context, "ناموفق!!\nساعت پایان قبلاً مشخص شده\nاگر قیمت محاسبه نشده با پشیبانی در ارتباط باشید", Toast.LENGTH_LONG).show()
-                    } else {
-                        presenter.FinishTime(item)
-                    }
-                    FinishButton.visibility = View.INVISIBLE
-                }
-            },
+            bind = { viewA, item -> bindRC(viewA, item) },
             onClick = { clicked() },
-            onLongClick = { LongClick(it) }
+            onLongClick = { presenter.ShowPayModel(it) }
         )
         binding.RcyclerFacture.adapter = adapterFacture
         binding.RcyclerFacture.layoutManager = LinearLayoutManager(requireView().context, RecyclerView.VERTICAL,false)
+
     }
 
+    //Bind Facture items in the RecyclerView
+    fun bindRC(view: View, item: FactureItem) {
+
+        // Setting view background color based on operator model and payment status
+        val leftColor = CheckPaying(item.Price, item.PayedPrice)
+        val rightColor =  presenter.GetOperatorColor(item.Operator)
+        val gradientDrawable = AngledGradientDrawable(50.0, leftColor, rightColor)
+        view.background = gradientDrawable
+
+        val ItemBinding = ItemFactureBinding.bind(view)
+
+        val firstPlayer = Converters().toList(item.Players.toString()).firstOrNull() ?: "مشتری جدید"
+
+        val priceTextColor = CheckPaying(item.Price, item.PayedPrice)
+
+        val isPaused = !item.PausedTime.isNullOrEmpty()
+        val isFinished = !item.EndTime.isNullOrEmpty()
+
+        //Set data in Item
+        ItemBinding.apply {
+            txtOnePlayer.text = firstPlayer
+            txtStartTime.text = item.StartTime
+            txtEndTime.text = (item.EndTime ?: "").ifEmpty { " - " }
+            txtPlayedTimeM.text = item.PlayedTimeH
+            txtPlayerCount.text = item.PlayerCount.toString()
+            txtPlayers.text = item.Players
+            txtPrice.text = item.Price.toString()
+            txtPrice.setTextColor(priceTextColor)
+            txtGames.text = item.GamesName
+            txtOperator.text = item.Operator
+
+            //Close the facture and record the current time as the end time of this factor (the end button disappears after being pressed and the facture is closed)
+            btnFinish.visibility = if(isFinished) {View.INVISIBLE} else { if(isPaused) { View.INVISIBLE } else { View.VISIBLE} }
+            btnFinish.setOnClickListener {
+
+                presenter.FinishTime(item)
+
+                btnFinish.visibility = View.GONE
+
+            }
+
+            // Resuming the Facture timer and taking it out of pause
+            btnPlay.visibility = if(isPaused) View.VISIBLE else View.INVISIBLE
+            btnPlay.setOnClickListener {
+                btnPlay.visibility = View.INVISIBLE
+                btnFinish.visibility = View.VISIBLE
+
+                presenter.ReplayPausedFacture(item)
+            }
+
+            // Pausing the Facture timer
+            btnPause.visibility = if(isFinished) { View.INVISIBLE } else { if(isPaused) { View.INVISIBLE } else { View.VISIBLE} }
+            btnPause.setOnClickListener {
+                presenter.StartPauseFacture(item)
+                btnPlay.visibility = View.VISIBLE
+                btnPause.visibility = View.INVISIBLE
+                btnFinish.visibility = View.INVISIBLE
+            }
+
+        }
+
+    }
+
+    //Update the list of selected players and display it in the RVPlayerName RecyclerView
     override fun updatePlayers(players: ArrayList<PlayerItem>,viewd: DialogFactureBinding) {
+
         viewd.RVPlayerName.visibility = View.VISIBLE
         val adapterPlayerName = GenericAdapter<PlayerItem>(
             data = players,
             layoutId = R.layout.item_playervertical,
             bind = { viewA, item ->
-                val Player = viewA.findViewById<TextView>(R.id.txt_TitleV)
-                val NumberOfAttendance = viewA.findViewById<TextView>(R.id.txt_AttendancesNumber)
-                Player.text = item.Name
-                NumberOfAttendance.text = item.NumberOfAttendances.toString()
+                viewA.findViewById<TextView>(R.id.txt_TitleV).text = item.Name
+                viewA.findViewById<TextView>(R.id.txt_AttendancesNumber).text = item.NumberOfAttendances.toString()
             }
         )
         viewd.RVPlayerName.adapter = adapterPlayerName
         viewd.RVPlayerName.layoutManager = LinearLayoutManager(viewd.root.context, RecyclerView.VERTICAL,false)
+
     }
 
+    //Show the PayModel BottomSheet
     override fun ShowBottomSheet(bottomSheet: PayModel) {
+
         bottomSheet.show(parentFragmentManager, bottomSheet.tag)
+
     }
-    fun clicked() { /* باز شدن صفحه ی ویرایش فاکتور */ }
-    fun LongClick(item: FactureItem) {
-        if(item.PayedPrice < item.Price) {
-            presenter.ShowPayModel(item.id!!)
+
+    // Check Facture payment status and returning red if unpaid, green if paid
+    override fun CheckPaying(Price: Int, PayedPrice: Int) :Int{
+
+        if (Price > PayedPrice) {
+            return "#DC1010".toColorInt()
         } else {
-            Toast.makeText(requireView().context, "فاکتور پرداخت شده است", Toast.LENGTH_SHORT).show()
+            return "#1674CC".toColorInt()
         }
+
     }
 
-    fun StartPause(item: FactureItem) {
-        val updated = item.copy(
-            PausedTime = System.currentTimeMillis().toString()
-        )
-        presenter.UpdateFacture(updated)
-    }
-    fun EndPause(item: FactureItem) {
-        val playedTimeMS = System.currentTimeMillis() - item.PausedTime!!.toLong()
-        val PlayedTimeH = (playedTimeMS / 60000) / 60.00
-        val NewPlayedTime = item.PlayedTimeH.toDouble() - PlayedTimeH
+    //On tap an FactureItem in the RecyclerView, open the Facture edit screen; after edit and confirm, update editable fields in the database
+    fun clicked() { /* باز شدن صفحه ی ویرایش فاکتور  که فعلا امکان پذیر نیست و باید درموردش  فکر کنم*/ }
 
-        val updated = item.copy(
-            PlayedTimeH = String.format(Locale.US,"%.2f", NewPlayedTime),
-            PausedTime = null
-        )
-        presenter.UpdateFacture(updated)
+    //Detaching and disconnecting from the presenter, and restarting the data stored in presenter
+    override fun onDetach() {
+        super.onDetach()
+
+        presenter.OnDetach()
+
     }
+
 }
 
 class AngledGradientDrawable(private val angle: Double, val colorStart: Int, val colorEnd: Int) : Drawable() {

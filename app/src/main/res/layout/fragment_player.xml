@@ -4,26 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="MissingDefaultResource"
-    tools:context=".view.FactureFragment"
-    android:background="@drawable/background5">
+    tools:context=".view.FactureFragment">
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="68dp"
+        android:padding="0dp"
+        android:backgroundTint="?attr/colorButtonNormal"
         android:clickable="true"
         android:focusable="true"
         android:text="افزودن گیمر"
+        android:textSize="13sp"
+        android:textColor="?attr/colorOnPrimary"
+        android:fontFamily="@font/baloobhaijaan2_medium"
+        android:outlineSpotShadowColor="#000000"
+        android:outlineAmbientShadowColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:targetApi="28" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RcyclerPlayer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+
         android:layout_marginStart="14dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"

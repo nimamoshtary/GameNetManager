@@ -1,7 +1,5 @@
 package ir.lifeplus.gamenethelper.view
 
-import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -83,11 +81,10 @@ class PayModel : BottomSheetDialogFragment() , ContractPV.PayModelView{
     }
 
     override fun Run(Facture: FactureItem) {
+
         val price = Facture.Price - Facture.PayedPrice
         binding.txtPriceFacture.text = price.toString()
 
-        val updated = Facture.copy(Status = true)
-        presenter.EditFacture(updated)
     }
 
     override fun onDetach() {

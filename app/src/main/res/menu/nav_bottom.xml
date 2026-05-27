@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Facture"
         android:id="@+id/nb_factor"
-        android:icon="@drawable/ic_factureselector" />
+        android:icon="@drawable/ic_factureselector"
+        android:title="" />
     <item
         android:title="Home"
         android:id="@+id/nb_Home"

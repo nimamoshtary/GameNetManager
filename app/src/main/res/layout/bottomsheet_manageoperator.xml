@@ -28,15 +28,16 @@
             android:id="@+id/btn_addOperator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="5dp"
+            android:background="@drawable/shape_edittext"
+            android:backgroundTint="?attr/colorButtonNormal"
             android:text="افزودن اپراتور"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:background="@drawable/shape_edittext"
-            app:backgroundTint="#4E044C" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -268,18 +269,20 @@
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_ok"
+            android:id="@+id/btn_submit"
             android:layout_width="70dp"
             android:layout_height="48dp"
             android:layout_marginTop="10dp"
             android:padding="0dp"
+            android:background="@drawable/shape_edittext"
+            app:backgroundTint="?attr/colorButtonNormal"
             android:text="اتمام"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:backgroundTint="#4E044C"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Console" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

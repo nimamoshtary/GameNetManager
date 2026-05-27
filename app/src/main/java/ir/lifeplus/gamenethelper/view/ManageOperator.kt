@@ -1,6 +1,5 @@
 package ir.lifeplus.gamenethelper.view
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,25 +10,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ir.lifeplus.gamenethelper.ContractPV
 import ir.lifeplus.gamenethelper.R
 import ir.lifeplus.gamenethelper.databinding.BottomsheetManageoperatorBinding
-import ir.lifeplus.gamenethelper.databinding.DialogFactureBinding
-import ir.lifeplus.gamenethelper.databinding.DialogOperatorBinding
-import ir.lifeplus.gamenethelper.databinding.FragmentSettingBinding
-import ir.lifeplus.gamenethelper.model.OperatorDao
 import ir.lifeplus.gamenethelper.model.OperatorItem
-import ir.lifeplus.gamenethelper.model.PlayerItem
-import ir.lifeplus.gamenethelper.model.database
-import ir.lifeplus.gamenethelper.presenter.FacturePresenter
 import ir.lifeplus.gamenethelper.presenter.ManageOperatorPresenter
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
+//کامنت گذاری از اینجا ادامه بده
 class ManageOperator : BottomSheetDialogFragment() , ContractPV.ManageOperatorView {
     lateinit var binding: BottomsheetManageoperatorBinding
     lateinit var presenter : ContractPV.ManageOperatorPresenter
@@ -63,13 +52,13 @@ class ManageOperator : BottomSheetDialogFragment() , ContractPV.ManageOperatorVi
                 }
             }
 
-            binding.btnOk.setOnClickListener {
+            binding.btnSubmit.setOnClickListener {
                 val model = binding.autoCompleteOP.editText!!.text.toString()
                 val operatorName = binding.edtStartTime.editText!!.text.toString()
                 when (model) {
                     "بردگیم" -> {
                         if (isBoardGameValid()) {
-                            presenter.AddOperatorBoardGame(operatorName, model, binding.edtPriceBG.editText!!.text.toString().toInt())
+                            presenter.AddOperatorBoardGame(operatorName, binding.edtPriceBG.editText!!.text.toString().toInt())
                             show("نمایش")
                         } else {
                             Toast.makeText(view.context, "شما قیمت را وارد نکردید", Toast.LENGTH_LONG).show()
@@ -81,7 +70,7 @@ class ManageOperator : BottomSheetDialogFragment() , ContractPV.ManageOperatorVi
                                 binding.edtPriceCTwo.editText!!.text.toString().toInt(),
                                 binding.edtPriceCThree.editText!!.text.toString().toInt(),
                                 binding.edtPriceCFour.editText!!.text.toString().toInt())
-                            presenter.AddOperatorConsol(operatorName, model, price)
+                            presenter.AddOperatorConsol(operatorName, price)
                             show("نمایش")
                         } else {
                             Toast.makeText(view.context, "شما همه‌ی قیمت‌ها را وارد نکردید", Toast.LENGTH_LONG).show()
@@ -115,7 +104,7 @@ class ManageOperator : BottomSheetDialogFragment() , ContractPV.ManageOperatorVi
         )
 
         binding.RecyclerOperator.adapter = adapterPlayer
-        binding.RecyclerOperator.layoutManager = GridLayoutManager(requireView().context, 3, RecyclerView.VERTICAL,false)
+        binding.RecyclerOperator.layoutManager = GridLayoutManager(requireView().context, 3, RecyclerView.VERTICAL, false)
 
     }
 

@@ -1,26 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.GameNetYar" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">#FFD600</item>
-        <item name="colorPrimaryVariant">#FFAB40</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <!-- Primary brand color -->
+        <item name="colorPrimary">#33022F</item>
+        <item name="colorPrimaryVariant">#4E044C</item>
+        <item name="colorOnPrimary">@color/white</item>
         <item name="background">@color/white</item>
-        <item name="colorOnBackground">#FFF59D</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">#2D2D2D</item>
-        <item name="colorSecondaryVariant">#464646</item>
+        <item name="colorOnBackground">#E9D4FF</item>
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">#E6CECECE</item>
+<!--        #2C0529 بنفش خیلی تیره -->
+        <item name="colorSecondaryVariant">@color/white</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <!-- Customize your light theme here. -->
-        <item name="colorButtonNormal">@null</item>
+        <item name="colorButtonNormal">#4E044C</item>
+        <item name="android:panelColorBackground">#2C2E54</item>
         <item name="colorControlHighlight">@null</item>
         <item name="colorControlActivated">@null</item>
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
-
-    <style name="Theme.GameNetYar" parent="Base.Theme.GameNetYar" />
 
     <style name="Toolbar" parent="Theme.MaterialComponents">
         <item name="fontFamily">@font/shadowhand</item>
